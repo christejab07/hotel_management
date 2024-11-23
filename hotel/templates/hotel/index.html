@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+    <title>Hotel management system</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to Our Hotel</h1>
+      <a href="{% url 'customer_register' %}" class="return"
+        >Register a Customer</a
+      ><br />
+      <a href="{% url 'view_rooms' %}" class="return">View Available Rooms</a
+      ><br />
+      <a href="{% url 'room_list' %}" class="return">View Reservations</a><br />
+      <a href="{% url 'list_customers' %}" class="return">View All customers</a
+      ><br />
+      <a href="{% url 'create_room' %}" class="return">Register a Room</a><br />
+    </div>
+  </body>
+</html>

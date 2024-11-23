@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+    <title>Reservation List</title>
+  </head>
+  <body>
+    <h1>Reservations</h1>
+
+    {% if reservations %}
+    <table>
+      <thead>
+        <tr>
+          <th>Customer Name</th>
+          <th>Customer Email</th>
+          <th>Room Number</th>
+          <th>Check-in Date</th>
+          <th>Check-out Date</th>
+          <th>Reservation Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for reservation in reservations %}
+        <tr>
+          <td>{{ reservation.customer.first_name }} {{ reservation.customer.last_name }}</td>
+          <td><a href="mail:{{ reservation.customer.email }}" class="email">{{ reservation.customer.email }}</a></td>
+          <td>{{ reservation.room.room_number }}</td>
+          <td>{{ reservation.check_in }}</td>
+          <td>{{ reservation.check_out }}</td>
+          <td>{{ reservation.created_at }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No reservations found</p>
+    {% endif %}
+<br>
+    <a href="{% url 'index' %}" class="return">Back to Home</a>
+  </body>
+</html>
+<!--{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+    <title>Room List</title>
+  </head>
+  <body>
+
+    <h1>Reservations</h1>
+    <ul>
+      {% for reservation in reservations %}
+      <li>
+        {{ reservation.customer.first_name }} {{ reservation.customer.last_name }} - Room {{ reservation.room.room_number }} from {{ reservation.check_in }} to {{ reservation.check_out }}
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>-->

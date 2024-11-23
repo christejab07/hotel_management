@@ -1,0 +1,154 @@
+body {
+  /* margin: 0;
+    padding: 0; */
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  text-align: center;
+  /* All text and elements are centered */
+}
+
+/* Global container to keep elements centered */
+/* .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+/* Heading styles */
+h1 {
+  color: #4caf50;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+/* Links and buttons */
+a,
+button {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: #4caf50;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  width: 85%;
+  transition: background-color 0.3s ease;
+}
+
+a:hover,
+button:hover {
+  background-color: #45a049;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 35%;
+  justify-content: center;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+input[type="submit"],
+button[type="submit"] {
+  width: 50%;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.return {
+  width: 15%;
+}
+
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+}
+
+td {
+  background-color: #f9f9f9;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+p {
+  color: #555;
+}
+
+.email {
+  color: #333;
+  background-color: transparent;
+}
+
+.email:hover {
+  background-color: transparent;
+}
+canvas {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #000;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #333;
+}

@@ -100,11 +100,22 @@ def list_customers(request):
     return render(request, "hotel/list_customers.html", {"customers": customers})
 
 def chart_view(request):
+    # Fetch all rooms
     rooms = Room.objects.all()
-    room_labels = [room.room_number for room in rooms]
-    reservations = [Reservation.objects.filter(room=room).count() for room in rooms]
+
+    # Pie chart data for rooms
+    booked_rooms = rooms.filter(is_available=False).count()
+    unbooked_rooms = rooms.filter(is_available=True).count()
+
+    # Pie chart data for customers
+    # Active customers are those with at least one reservation
+    active_customers = Customer.objects.filter(reservation__isnull=False).distinct().count()
+    # Inactive customers are those with no reservations
+    inactive_customers = Customer.objects.filter(reservation__isnull=True).count()
 
     return render(request, 'hotel/charts.html', {
-        'room_labels': room_labels,
-        'reservations': reservations
+        'booked_rooms': booked_rooms,
+        'unbooked_rooms': unbooked_rooms,
+        'active_customers': active_customers,
+        'inactive_customers': inactive_customers,
     })

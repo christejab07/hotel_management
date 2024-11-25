@@ -7,49 +7,78 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Reservation Statistics</h1>
-    <canvas id="reservationChart" width="400" height="200"></canvas>
+    <h1>Hotel Statistics</h1>
+
+    <!-- Room Chart -->
+    <h2>Room Status</h2>
+    <canvas id="roomChart" width="400" height="200"></canvas>
+
+    <!-- Customer Chart -->
+    <h2>Customer Status</h2>
+    <canvas id="customerChart" width="400" height="200"></canvas>
+
     <a href="{% url 'index' %}" class="return">Back to Home</a>
 
-    <script>
-        const roomLabels = {{ room_labels|safe }};
-    const reservationData = {{ reservations|safe }};
+    <script id="chart-data" type="application/json">
+        {
+            "roomData": [{{ booked_rooms|default:0 }}, {{ unbooked_rooms|default:0 }}],
+            "customerData": [{{ active_customers|default:0 }}, {{ inactive_customers|default:0 }}]
+        }
+    </script>
 
-    const ctx = document.getElementById('reservationChart').getContext('2d');
-    const reservationChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: roomLabels,
+    <script>
+        // Load data from JSON script
+        const chartData = JSON.parse(document.getElementById('chart-data').textContent);
+
+        // Room Data
+        const roomData = {
+            labels: ['Booked Rooms', 'Available Rooms'],
             datasets: [{
-                label: 'Number of Reservations',
-                data: reservationData,
+                label: 'Room Status',
+                data: chartData.roomData,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(75, 192, 192, 0.6)' 
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(75, 192, 192, 1)'
                 ],
                 borderWidth: 1
             }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+        };
+
+        // Customer Data
+        const customerData = {
+            labels: ['Active Customers', 'Inactive Customers'],
+            datasets: [{
+                label: 'Customer Status',
+                data: chartData.customerData,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.6)', 
+                    'rgba(153, 102, 255, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Render Room Chart
+        const roomCtx = document.getElementById('roomChart').getContext('2d');
+        new Chart(roomCtx, {
+            type: 'pie',
+            data: roomData,
+        });
+
+        // Render Customer Chart
+        const customerCtx = document.getElementById('customerChart').getContext('2d');
+        new Chart(customerCtx, {
+            type: 'pie',
+            data: customerData,
+        });
     </script>
 </body>
 </html>
